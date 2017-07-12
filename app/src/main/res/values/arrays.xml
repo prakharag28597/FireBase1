@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="item_picker">Select a Day</string>
+    <string-array name="day_array">
+        <item> Monday </item>
+        <item> Tuesday </item>
+        <item> Wednesday </item>
+        <item> Thursday </item>
+        <item> Friday </item>
+        <item> Saturday </item>
+        <item> Sunday </item>
+    </string-array>
+    <string-array name="route_array">
+        <item> Argul-NISER </item>
+        <item> Argul-KGP </item>
+        <item> Argul-TP </item>
+        <item> NISER-Argul </item>
+        <item> KGP-Argul </item>
+        <item> TP-Argul </item>
+        <item> Shuttle </item>
+    </string-array>
+</resources>

@@ -3,6 +3,8 @@ package prakhar.firebase1;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -23,7 +25,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.bus);
 
-        Log.d("myTag", "Inside main activity");
+        Spinner spinner_day = (Spinner)findViewById(R.id.spinner_day);
+        ArrayAdapter<CharSequence> day_adapter = ArrayAdapter.createFromResource(
+                this, R.array.day_array, R.layout.spinner_layout);
+        day_adapter.setDropDownViewResource(R.layout.spinner_layout);
+        spinner_day.setAdapter(day_adapter);
+
+        Spinner spinner_route = (Spinner)findViewById(R.id.spinner_route);
+        ArrayAdapter<CharSequence> route_adapter = ArrayAdapter.createFromResource(
+                this, R.array.route_array, R.layout.spinner_layout);
+        route_adapter.setDropDownViewResource(R.layout.spinner_layout);
+        spinner_route.setAdapter(route_adapter);
 
         database= FirebaseDatabase.getInstance();
 
@@ -32,7 +44,6 @@ public class MainActivity extends AppCompatActivity {
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Log.d("myTag", "This is my message");
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     DayBus day = postSnapshot.getValue(DayBus.class);
 
