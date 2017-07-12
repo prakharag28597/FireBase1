@@ -5,16 +5,17 @@ package prakhar.firebase1;
  */
 
 public class Bus {
-    private int bus_number;
+    private int busnumber;
     private String start;
     private String end;
-    private String via;
+    private String via1;
+    private String via2;
     private String time;
 
     public Bus() {
     }
-    public int getBusNumber(){
-        return bus_number;
+    public int getBusnumber(){
+        return busnumber;
     }
     public String getStart() {
         return start;
@@ -22,8 +23,11 @@ public class Bus {
     public String getEnd() {
         return end;
     }
-    public String getVia() {
-        return via;
+    public String getVia1() {
+        return via1;
+    }
+    public String getVia2() {
+        return via2;
     }
     public String getTime() {
         return time;

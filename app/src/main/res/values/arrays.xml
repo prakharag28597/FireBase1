@@ -10,13 +10,16 @@
         <item> Saturday </item>
         <item> Sunday </item>
     </string-array>
-    <string-array name="route_array">
-        <item> Argul-NISER </item>
-        <item> Argul-KGP </item>
-        <item> Argul-TP </item>
-        <item> NISER-Argul </item>
-        <item> KGP-Argul </item>
-        <item> TP-Argul </item>
-        <item> Shuttle </item>
+    <string-array name="from_array">
+        <item> Argul </item>
+        <item> KGP </item>
+        <item> TP </item>
+        <item> NISER </item>
+    </string-array>
+    <string-array name="to_array">
+        <item> Argul </item>
+        <item> KGP </item>
+        <item> TP </item>
+        <item> NISER </item>
     </string-array>
 </resources>

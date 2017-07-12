@@ -1,5 +1,7 @@
 package prakhar.firebase1;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 
 /**
@@ -8,15 +10,15 @@ import java.util.ArrayList;
 
 public class DayBus {
     private String day;
-    private ArrayList<Bus> bus_list;
+    private ArrayList<Bus> buslist;
 
-    public DayBus() {
+    public DayBus(){
     }
 
     public String getDay() {
         return day;
     }
-    public ArrayList<Bus> getBusList() {
-        return bus_list;
+    public ArrayList<Bus> getBuslist() {
+        return buslist;
     }
 }

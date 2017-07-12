@@ -3,7 +3,9 @@ package prakhar.firebase1;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -19,54 +21,82 @@ public class MainActivity extends AppCompatActivity {
 
     FirebaseDatabase database;
     DatabaseReference myRef;
+    Button bus_button;
+    Spinner spinner_day,spinner_to,spinner_from;
+    String query_day,query_to,query_from;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.bus);
 
-        Spinner spinner_day = (Spinner)findViewById(R.id.spinner_day);
+        bus_button=(Button)findViewById(R.id.bus_button) ;
+
+        final Spinner spinner_day = (Spinner)findViewById(R.id.spinner_day);
         ArrayAdapter<CharSequence> day_adapter = ArrayAdapter.createFromResource(
                 this, R.array.day_array, R.layout.spinner_layout);
         day_adapter.setDropDownViewResource(R.layout.spinner_layout);
         spinner_day.setAdapter(day_adapter);
 
-        Spinner spinner_route = (Spinner)findViewById(R.id.spinner_route);
-        ArrayAdapter<CharSequence> route_adapter = ArrayAdapter.createFromResource(
-                this, R.array.route_array, R.layout.spinner_layout);
-        route_adapter.setDropDownViewResource(R.layout.spinner_layout);
-        spinner_route.setAdapter(route_adapter);
+        spinner_from = (Spinner)findViewById(R.id.spinner_from);
+        ArrayAdapter<CharSequence> from_adapter = ArrayAdapter.createFromResource(
+                this, R.array.to_array, R.layout.spinner_layout);
+        from_adapter.setDropDownViewResource(R.layout.spinner_layout);
+        spinner_from.setAdapter(from_adapter);
 
-        database= FirebaseDatabase.getInstance();
+        spinner_to = (Spinner)findViewById(R.id.spinner_to);
+        ArrayAdapter<CharSequence> to_adapter = ArrayAdapter.createFromResource(
+                this, R.array.from_array, R.layout.spinner_layout);
+        to_adapter.setDropDownViewResource(R.layout.spinner_layout);
+        spinner_to.setAdapter(to_adapter);
 
-        database.setPersistenceEnabled(true);
-        myRef=database.getReference();
-        myRef.addValueEventListener(new ValueEventListener() {
+        bus_button.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-                    DayBus day = postSnapshot.getValue(DayBus.class);
+            public void onClick(View view) {
+                query_day = spinner_day.getSelectedItem().toString();
+                query_from = spinner_from.getSelectedItem().toString();
+                query_to = spinner_to.getSelectedItem().toString();
+                // setting database reference
+                database= FirebaseDatabase.getInstance();
+                myRef=database.getReference();
+                // getting data from database
+                myRef.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                            DayBus day = postSnapshot.getValue(DayBus.class);
+                            String today = day.getDay();
 
-                    String today = day.getDay();
-                    ArrayList<Bus> bus_list= day.getBusList();
+                            // if query day is the day in database
+                            if(today.equals(query_day)) {
+                                ArrayList<Bus> bus_list=day.getBuslist();
+                                for(Bus each_bus: bus_list){
+                                    String start=each_bus.getStart();
+                                    String end=each_bus.getEnd();
+                                    String via1=each_bus.getVia1();
+                                    String via2=each_bus.getVia2();
 
-//                    int bus_number = day.getBus().getBusNumber();
-//                    String start = day.getBus().getStart();
-//                    String end = day.getBus().getEnd();
-//                    String via = day.getBus().getVia();
-//                    String time = day.getBus().getTime();
+                                    Log.d("start",start);
+                                    Log.d("via1",via1);
+                                    Log.d("via2",via2);
+                                    Log.d("end",end);
+                                    //query_route
+                                }
 
+                            }
+                        }
+                    }
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
 
-                    System.out.println("time" + today);
-                    Toast.makeText(getApplicationContext(), "time" + today, Toast.LENGTH_SHORT).show();
-
-                }
-            }
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
+                    }
+                });
 
             }
         });
+
+
+
 
     }
 }
