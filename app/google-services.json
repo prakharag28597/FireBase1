@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "370853271225",
+    "firebase_url": "https://fir-1-13927.firebaseio.com",
+    "project_id": "fir-1-13927",
+    "storage_bucket": "fir-1-13927.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:370853271225:android:64e1597e6e9f36df",
+        "android_client_info": {
+          "package_name": "prakhar.firebase1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "370853271225-dd69c921cldu9ded82j8c753mb3ithpj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyADiYqwKO4NPGbGflA4wmS-Pgb-CgWNc8w"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
