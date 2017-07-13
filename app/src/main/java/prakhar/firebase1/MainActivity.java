@@ -34,19 +34,19 @@ public class MainActivity extends AppCompatActivity {
 
         final Spinner spinner_day = (Spinner)findViewById(R.id.spinner_day);
         ArrayAdapter<CharSequence> day_adapter = ArrayAdapter.createFromResource(
-                this, R.array.day_array, R.layout.spinner_layout);
+                this, R.array.day_array, android.R.layout.simple_spinner_dropdown_item);
         day_adapter.setDropDownViewResource(R.layout.spinner_layout);
         spinner_day.setAdapter(day_adapter);
 
         spinner_from = (Spinner)findViewById(R.id.spinner_from);
         ArrayAdapter<CharSequence> from_adapter = ArrayAdapter.createFromResource(
-                this, R.array.to_array, R.layout.spinner_layout);
+                this, R.array.to_array, android.R.layout.simple_spinner_dropdown_item);
         from_adapter.setDropDownViewResource(R.layout.spinner_layout);
         spinner_from.setAdapter(from_adapter);
 
         spinner_to = (Spinner)findViewById(R.id.spinner_to);
         ArrayAdapter<CharSequence> to_adapter = ArrayAdapter.createFromResource(
-                this, R.array.from_array, R.layout.spinner_layout);
+                this, R.array.from_array,android.R.layout.simple_spinner_dropdown_item);
         to_adapter.setDropDownViewResource(R.layout.spinner_layout);
         spinner_to.setAdapter(to_adapter);
 
