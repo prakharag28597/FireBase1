@@ -1,13 +1,15 @@
 package prakhar.firebase1;
 
+
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.Spinner;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -24,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
     Button bus_button;
     Spinner spinner_day,spinner_to,spinner_from;
     String query_day,query_to,query_from;
+    LinearLayout item;
+    ScrollView scroll;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.bus);
 
         bus_button=(Button)findViewById(R.id.bus_button) ;
+        item = (LinearLayout) findViewById(R.id.linear_layout);
+        scroll=(ScrollView)findViewById(R.id.scroll);
 
         spinner_day = (Spinner)findViewById(R.id.spinner_day);
         ArrayAdapter<CharSequence> day_adapter = ArrayAdapter.createFromResource(
@@ -71,37 +77,67 @@ public class MainActivity extends AppCompatActivity {
                             // if query day is the day in database
                             if(today.equals(query_day)) {
                                 ArrayList<Bus> bus_list=day.getBuslist();
+                                item.removeAllViews();
                                 for(Bus each_bus: bus_list){
                                     String start=each_bus.getStart();
                                     String end=each_bus.getEnd();
                                     String via1=each_bus.getVia1();
                                     String via2=each_bus.getVia2();
-                                    int bus_number=each_bus.getBusnumber();
+                                    int busnumber=each_bus.getBusnumber();
                                     String time=each_bus.getTime();
                                     if(start.equals(query_from)){
                                         if(via1.equals(query_to) || via2.equals(query_to) || end.equals(query_to)){
-                                            // do something
-                                            Toast.makeText(getApplicationContext(),time,Toast.LENGTH_SHORT).show();
+                                            View child = getLayoutInflater().inflate(R.layout.listview, null);
+                                            item.addView(child);
+                                            TextView bus_number_text = (TextView) child.findViewById(R.id.bus_number_text);
+                                            TextView from_text = (TextView) child.findViewById(R.id.from_text);
+                                            TextView via1_text = (TextView) child.findViewById(R.id.via1_text);
+                                            TextView via2_text = (TextView) child.findViewById(R.id.via2_text);
+                                            TextView end_text = (TextView) child.findViewById(R.id.end_text);
+                                            TextView time_text = (TextView) child.findViewById(R.id.time_text);
+                                            bus_number_text.setText(Integer.toString(busnumber));
+                                            from_text.setText(start);
+                                            via1_text.setText(via1);
+                                            via2_text.setText(via2);
+                                            end_text.setText(end);
+                                            time_text.setText(time);
                                         }
                                     }else if(via1.equals(query_from)){
                                         if(via2.equals(query_to) || end.equals(query_to)){
-                                            // do something
-                                            Toast.makeText(getApplicationContext(),time,Toast.LENGTH_SHORT).show();
+                                            View child = getLayoutInflater().inflate(R.layout.listview, null);
+                                            item.addView(child);
+                                            TextView bus_number_text = (TextView) child.findViewById(R.id.bus_number_text);
+                                            TextView from_text = (TextView) child.findViewById(R.id.from_text);
+                                            TextView via1_text = (TextView) child.findViewById(R.id.via1_text);
+                                            TextView via2_text = (TextView) child.findViewById(R.id.via2_text);
+                                            TextView end_text = (TextView) child.findViewById(R.id.end_text);
+                                            TextView time_text = (TextView) child.findViewById(R.id.time_text);
+                                            bus_number_text.setText(Integer.toString(busnumber));
+                                            from_text.setText(start);
+                                            via1_text.setText(via1);
+                                            via2_text.setText(via2);
+                                            end_text.setText(end);
+                                            time_text.setText(time);
                                         }
                                     }else if(via2.equals(query_from)){
                                         if(end.equals(query_to)){
-                                            // do something
-                                            Toast.makeText(getApplicationContext(),time,Toast.LENGTH_SHORT).show();
+                                            View child = getLayoutInflater().inflate(R.layout.listview, null);
+                                            item.addView(child);
+                                            TextView bus_number_text = (TextView) child.findViewById(R.id.bus_number_text);
+                                            TextView from_text = (TextView) child.findViewById(R.id.from_text);
+                                            TextView via1_text = (TextView) child.findViewById(R.id.via1_text);
+                                            TextView via2_text = (TextView) child.findViewById(R.id.via2_text);
+                                            TextView end_text = (TextView) child.findViewById(R.id.end_text);
+                                            TextView time_text = (TextView) child.findViewById(R.id.time_text);
+                                            bus_number_text.setText(Integer.toString(busnumber));
+                                            from_text.setText(start);
+                                            via1_text.setText(via1);
+                                            via2_text.setText(via2);
+                                            end_text.setText(end);
+                                            time_text.setText(time);
                                         }
                                     }
-
-                                    Log.d("start",start);
-                                    Log.d("via1",via1);
-                                    Log.d("via2",via2);
-                                    Log.d("end",end);
-                                    //query_route
                                 }
-
                             }
                         }
                     }
