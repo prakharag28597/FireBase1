@@ -1,6 +1,7 @@
 package prakhar.firebase1;
 
 
+import android.app.ProgressDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     String query_day,query_to,query_from;
     LinearLayout item;
     ScrollView scroll;
+    ProgressDialog pd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +61,10 @@ public class MainActivity extends AppCompatActivity {
         bus_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                pd = new ProgressDialog(MainActivity.this);
+                pd.setMessage("loading");
+                pd.show();
+                pd.setCancelable(false);
                 // getting the query day
                 query_day = spinner_day.getSelectedItem().toString();
                 // getting query from and to
@@ -71,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
                 myRef.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
+                        pd.dismiss();
                         for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                             DayBus day = postSnapshot.getValue(DayBus.class);
                             String today = day.getDay();
@@ -145,6 +152,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onCancelled(DatabaseError databaseError) {
 
                     }
+
                 });
 
             }
