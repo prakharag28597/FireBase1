@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
         bus_button=(Button)findViewById(R.id.bus_button) ;
 
-        final Spinner spinner_day = (Spinner)findViewById(R.id.spinner_day);
+        spinner_day = (Spinner)findViewById(R.id.spinner_day);
         ArrayAdapter<CharSequence> day_adapter = ArrayAdapter.createFromResource(
                 this, R.array.day_array, android.R.layout.simple_spinner_dropdown_item);
         day_adapter.setDropDownViewResource(R.layout.spinner_layout);
@@ -53,7 +53,9 @@ public class MainActivity extends AppCompatActivity {
         bus_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // getting the query day
                 query_day = spinner_day.getSelectedItem().toString();
+                // getting query from and to
                 query_from = spinner_from.getSelectedItem().toString();
                 query_to = spinner_to.getSelectedItem().toString();
                 // setting database reference
@@ -66,7 +68,6 @@ public class MainActivity extends AppCompatActivity {
                         for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                             DayBus day = postSnapshot.getValue(DayBus.class);
                             String today = day.getDay();
-
                             // if query day is the day in database
                             if(today.equals(query_day)) {
                                 ArrayList<Bus> bus_list=day.getBuslist();
@@ -75,6 +76,24 @@ public class MainActivity extends AppCompatActivity {
                                     String end=each_bus.getEnd();
                                     String via1=each_bus.getVia1();
                                     String via2=each_bus.getVia2();
+                                    int bus_number=each_bus.getBusnumber();
+                                    String time=each_bus.getTime();
+                                    if(start.equals(query_from)){
+                                        if(via1.equals(query_to) || via2.equals(query_to) || end.equals(query_to)){
+                                            // do something
+                                            Toast.makeText(getApplicationContext(),time,Toast.LENGTH_SHORT).show();
+                                        }
+                                    }else if(via1.equals(query_from)){
+                                        if(via2.equals(query_to) || end.equals(query_to)){
+                                            // do something
+                                            Toast.makeText(getApplicationContext(),time,Toast.LENGTH_SHORT).show();
+                                        }
+                                    }else if(via2.equals(query_from)){
+                                        if(end.equals(query_to)){
+                                            // do something
+                                            Toast.makeText(getApplicationContext(),time,Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
 
                                     Log.d("start",start);
                                     Log.d("via1",via1);
