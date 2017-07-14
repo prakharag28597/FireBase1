@@ -22,4 +22,11 @@
         <item> TP </item>
         <item> NISER </item>
     </string-array>
+    <string-array name="time_array">
+        <item> BreakFast </item>
+        <item> Lunch </item>
+        <item> Snacks </item>
+        <item> Dinner </item>
+        <item> Complete </item>
+    </string-array>
 </resources>

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class DayMenu {
     private String day;
-    private ArrayList<Bus> menulist;
+    private ArrayList<Menu> menulist;
 
     public DayMenu(){
     }
@@ -17,7 +17,7 @@ public class DayMenu {
     public String getDay() {
         return day;
     }
-    public ArrayList<Bus> getMenulist() {
+    public ArrayList<Menu> getMenulist() {
         return menulist;
     }
 }
