@@ -27,13 +27,13 @@ public class Option extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent=new Intent(Option.this, MainActivity.class);
                 startActivity(intent);
-
             }
         });
         food.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent=new Intent(Option.this, MessMenu.class);
+                startActivity(intent);
             }
         });
         classroom.setOnClickListener(new View.OnClickListener() {
