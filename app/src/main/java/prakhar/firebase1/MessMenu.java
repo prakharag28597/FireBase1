@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewConfiguration;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -26,6 +27,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ServerValue;
 import com.google.firebase.database.ValueEventListener;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,7 +50,6 @@ public class MessMenu extends Activity {
         action_bar.setTitle("Mess Menu");
         action_bar.setHomeButtonEnabled(true);
         action_bar.setDisplayHomeAsUpEnabled(true);
-
         layout=(LinearLayout)findViewById(R.id.linear_layout);
         mess_button=(Button)findViewById(R.id.mess_button);
 
@@ -148,4 +149,5 @@ public class MessMenu extends Activity {
         super.onBackPressed();
         this.finish();
     }
+
 }
