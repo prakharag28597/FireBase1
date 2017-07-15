@@ -31,7 +31,6 @@ public class MainActivity extends Activity {
     Spinner spinner_day,spinner_to,spinner_from;
     String query_day,query_to,query_from;
     LinearLayout item;
-    ScrollView scroll;
     ProgressDialog pd;
 
     @Override
@@ -44,7 +43,6 @@ public class MainActivity extends Activity {
 
         bus_button=(Button)findViewById(R.id.bus_button) ;
         item = (LinearLayout) findViewById(R.id.linear_layout);
-        scroll=(ScrollView)findViewById(R.id.scroll);
 
         spinner_day = (Spinner)findViewById(R.id.spinner_day);
         ArrayAdapter<CharSequence> day_adapter = ArrayAdapter.createFromResource(

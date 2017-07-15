@@ -55,6 +55,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/mess_button" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/scroll">
     <LinearLayout
         android:paddingTop="15dp"
         android:layout_width="match_parent"
@@ -62,6 +66,7 @@
         android:orientation="vertical"
         android:id="@+id/linear_layout">
     </LinearLayout>
+    </ScrollView>
 
 
 </LinearLayout>
