@@ -8,8 +8,9 @@
         android:icon="@drawable/iitbbs"
         android:label="Helper"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".Intro">
+        android:theme="@android:style/Theme.Material.Settings">
+        <activity android:name=".Intro"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

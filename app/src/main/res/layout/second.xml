@@ -3,6 +3,10 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent"
+    android:paddingTop="3dp"
+    android:paddingLeft="2dp"
+    android:paddingRight="2dp"
+    android:paddingBottom="2dp"
     android:weightSum="1">
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
@@ -14,6 +18,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingLeft="2dp"
             android:src="@drawable/bus"
             android:layout_weight=".5"
             android:id="@+id/bus"/>
@@ -21,6 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/food"
+            android:paddingRight="20dp"
             android:layout_weight=".5"
             android:id="@+id/food"/>
     </LinearLayout>
@@ -41,6 +47,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/contact"
+            android:paddingRight="15dp"
             android:layout_weight=".5"
             android:id="@+id/contact"/>
 

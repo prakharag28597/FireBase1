@@ -1,10 +1,14 @@
 package prakhar.firebase1;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -23,12 +27,13 @@ import com.google.firebase.database.ServerValue;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by prakharag on 13-07-2017.
  */
 
-public class MessMenu extends AppCompatActivity {
+public class MessMenu extends Activity {
     DatabaseReference myRef;
     Spinner spinner_day,spinner_time;
     Button mess_button;
@@ -39,6 +44,11 @@ public class MessMenu extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu);
+        android.app.ActionBar action_bar=getActionBar();
+        action_bar.setTitle("Mess Menu");
+        action_bar.setHomeButtonEnabled(true);
+        action_bar.setDisplayHomeAsUpEnabled(true);
+
         layout=(LinearLayout)findViewById(R.id.linear_layout);
         mess_button=(Button)findViewById(R.id.mess_button);
 
@@ -59,8 +69,13 @@ public class MessMenu extends AppCompatActivity {
                 .setApplicationId("1:963852431486:android:82749dade78a8692")
                 .setDatabaseUrl("https://testfirebase-698a9.firebaseio.com/")
                 .build();
-        FirebaseApp menuApp = FirebaseApp.initializeApp(getApplicationContext(), options, "menuApp");
-
+        FirebaseApp menuApp=null;
+        // this is some real shit
+        try{
+            menuApp = FirebaseApp.getInstance("TestFirebase");
+        }catch (Exception e){
+            menuApp = FirebaseApp.initializeApp(getApplicationContext(), options,"TestFirebase");
+        }
         FirebaseDatabase menuDatabase = FirebaseDatabase.getInstance(menuApp);
 
         myRef=menuDatabase.getReference();
@@ -83,6 +98,7 @@ public class MessMenu extends AppCompatActivity {
                             if(today.equals(spinner_day.getSelectedItem().toString())){
                                 ArrayList<Menu> menu_list=day.getMenulist();
                                 for(Menu each_menu: menu_list){
+                                    Log.d("fdsfsdfsdfs","--------------");
                                     String time=each_menu.getTime();
                                     if(spinner_time.getSelectedItem().toString().equals("Complete")){
                                         // get complete days schedule
@@ -115,5 +131,21 @@ public class MessMenu extends AppCompatActivity {
                 });
             }
         });
+    }
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                // app icon in action bar clicked; go home
+                Intent intent = new Intent(this, Option.class);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        this.finish();
     }
 }
