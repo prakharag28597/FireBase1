@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewConfiguration;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -31,6 +32,8 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
+import at.markushi.ui.CircleButton;
+
 /**
  * Created by prakharag on 13-07-2017.
  */
@@ -41,6 +44,7 @@ public class MessMenu extends Activity {
     Button mess_button;
     ProgressDialog pd;
     LinearLayout layout;
+    CircleButton mess_complaint;
     private static final String FIREBASE_STRING ="https://testfirebase-698a9.firebaseio.com/";
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -52,6 +56,7 @@ public class MessMenu extends Activity {
         action_bar.setDisplayHomeAsUpEnabled(true);
         layout=(LinearLayout)findViewById(R.id.linear_layout);
         mess_button=(Button)findViewById(R.id.mess_button);
+        mess_complaint=(CircleButton)findViewById(R.id.mess_complaint);
 
         spinner_day = (Spinner)findViewById(R.id.spinner_day);
         ArrayAdapter<CharSequence> day_adapter = ArrayAdapter.createFromResource(
@@ -64,6 +69,14 @@ public class MessMenu extends Activity {
                 this, R.array.time_array, android.R.layout.simple_spinner_dropdown_item);
         time_adapter.setDropDownViewResource(R.layout.spinner_layout);
         spinner_time.setAdapter(time_adapter);
+
+        mess_complaint.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(),"yaaaay",Toast.LENGTH_SHORT).show();
+            }
+        });
+
 
         FirebaseOptions options = new FirebaseOptions.Builder()
                 .setApiKey("AIzaSyCK2CmvjJZSZ-OE82fEZk3EuT90BPZfCLM")
